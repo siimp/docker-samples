@@ -20,15 +20,18 @@ services:
   db_replica:
     image: "postgres:13.2"
     hostname: "db_replica"
-    command: runuser -u postgres -- bash -c "sleep 10 && echo "172.21.0.2:5432:*:postgres:postgres" > ~/.pgpass && chmod 600 ~/.pgpass && pg_basebackup --pgdata=/var/lib/postgresql/data_replica --format=p --write-recovery-conf --checkpoint=fast --progress --host=172.21.0.2 --port=5432 --username=postgres --no-password && postgres -c config_file=/etc/postgresql/postgresql.conf"
+    command: runuser -u postgres -- bash -c "sleep 10 && echo "172.21.0.2:5432:*:postgres:postgres" > ~/.pgpass && chmod 600 ~/.pgpass && pg_basebackup --pgdata=/var/lib/postgresql/data_replica --format=p --write-recovery-conf --checkpoint=fast --progress --host=172.21.0.2 --port=5432 --username=postgres --no-password && postgres -c config_file=/etc/postgresql/postgresql.conf -c hba_file=/etc/postgresql/pg_hba.conf"
     ports:
       - "5434:5432"
     volumes:
       - "./replica_postgresql.conf:/etc/postgresql/postgresql.conf"
+      - "./replica_pg_hba.conf:/etc/postgresql/pg_hba.conf"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       PGDATA: /var/lib/postgresql/data_replica
+    depends_on:
+      - db_master
     networks:
       postgres-network:
         ipv4_address: 172.21.0.3
