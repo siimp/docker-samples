@@ -21,6 +21,13 @@ docker inspect ef3 | grep -A 6 Mounts
 docker rm -v ef3
 ```
 
+## Custom image commands
+```bash
+docker build --tag siimp/nodejs-express:1.0.0 ./images/nodejs
+docker login
+docker push siimp/nodejs-express:1.0.0
+```
+
 ## Samples
 
 ### Running bash in interactive tty
