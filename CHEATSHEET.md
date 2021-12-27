@@ -5,6 +5,7 @@
 docker images
 docker pull nginx:1.21.4-alpine
 docker rmi nginx:1.21.4-alpine
+docker images prune
 ```
 
 ## Container commands
@@ -13,6 +14,7 @@ docker ps --all
 # ef3 - first letters of container name
 docker stop ef3
 docker rm ef3
+docker exec ef3 /bin/sh
 ```
 
 ## Volume commands
