@@ -15,6 +15,8 @@ docker ps --all
 docker stop ef3
 docker rm ef3
 docker exec ef3 /bin/sh
+# remove all containers using force
+docker rm -f $(docker ps -all --quiet)
 ```
 
 ## Volume commands
