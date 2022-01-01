@@ -5,6 +5,7 @@
 docker images
 docker pull nginx:1.21.4-alpine
 docker rmi nginx:1.21.4-alpine
+docker rmi -f $(docker images --all --quiet)
 docker images prune
 ```
 
@@ -16,7 +17,7 @@ docker stop ef3
 docker rm ef3
 docker exec ef3 /bin/sh
 # remove all containers using force
-docker rm -f $(docker ps -all --quiet)
+docker rm -f $(docker ps --all --quiet)
 ```
 
 ## Volume commands
