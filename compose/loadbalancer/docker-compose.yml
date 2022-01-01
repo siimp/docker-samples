@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  node1:
+    build:
+      context: ../../images/nodejs
+      dockerfile: Dockerfile
+    networks:
+      - node-haproxy-network
+  node2:
+    build:
+      context: ../../images/nodejs
+      dockerfile: Dockerfile
+    networks:
+      - node-haproxy-network
+  loadbalancer:
+    build:
+      context: ../../images/haproxy
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - "node1:server1"
+      - "node2:server2"
+    networks:
+      - node-haproxy-network
+networks:
+  node-haproxy-network:
+    driver: bridge

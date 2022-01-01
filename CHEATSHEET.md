@@ -32,6 +32,17 @@ docker login
 docker push siimp/nodejs-express:1.0.0
 ```
 
+## Docker compose commands
+```bash
+docker-compose -f ./compose/loadbalancer/docker-compose.yml build
+docker-compose up -d
+docker-compose down
+docker-compose logs
+docker-compose ps
+docker-compose stop
+docker-compose start
+```
+
 ## Samples
 
 ### Running bash in interactive tty
