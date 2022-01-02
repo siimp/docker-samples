@@ -35,13 +35,22 @@ docker push siimp/nodejs-express:1.0.0
 
 ## Docker compose commands
 ```bash
-docker-compose -f ./compose/loadbalancer/docker-compose.yml build
-docker-compose up -d
+docker-compose build
+docker-compose up
 docker-compose down
 docker-compose logs
 docker-compose ps
 docker-compose stop
 docker-compose start
+# if docker-compose.yml file is not in current working directory
+docker-compose -f ./compose/loadbalancer/docker-compose.yml build
+docker-compose -f ./compose/loadbalancer/docker-compose.yml up --detach
+```
+
+## Kompose tool (docker compose -> kubernetes deployment)
+https://github.com/kubernetes/kompose
+```bash
+kompose convert --file ./compose/loadbalancer/docker-compose.yml --out ./compose/loadbalancer/.k8s
 ```
 
 ## Samples

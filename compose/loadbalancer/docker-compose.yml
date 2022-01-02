@@ -1,15 +1,19 @@
-version: "3.9"
+version: "3"
 services:
   node1:
     build:
       context: ../../images/nodejs
       dockerfile: Dockerfile
+    ports:
+      - "3000"
     networks:
       - node-haproxy-network
   node2:
     build:
       context: ../../images/nodejs
       dockerfile: Dockerfile
+    ports:
+      - "3000"
     networks:
       - node-haproxy-network
   loadbalancer:
