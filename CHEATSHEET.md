@@ -15,7 +15,7 @@ docker ps --all
 # ef3 - first letters of container name
 docker stop ef3
 docker rm ef3
-docker exec ef3 /bin/sh
+docker exec -it ef3 /bin/sh
 # remove all containers using force
 docker rm -f $(docker ps --all --quiet)
 ```
@@ -57,7 +57,7 @@ kompose convert --file ./compose/loadbalancer/docker-compose.yml --out ./compose
 
 ### Running bash in interactive tty
 ```bash
-docker run --rm -it bash:5.1.12-alpine3.14
+docker run --rm -it bash:5.1.12-alpine
 # to install packages in alpine bash (ie curl)
 # apk update
 # apk install curl
@@ -70,7 +70,7 @@ docker run --rm -d -p 8080:80 nginx:1.21.4-alpine
 
 ### Running node with data volume and working directory
 ```bash
-docker run --rm -d -p 8080:3000 -v $(pwd)/volumes/nodejs:/var/www -w "/var/www" node:17.3.0-alpine3.12 node app.js
+docker run --rm -d -p 8080:3000 -v $(pwd)/volumes/nodejs:/var/www -w "/var/www" node:17.3.0-alpine node app.js
 ```
 
 
