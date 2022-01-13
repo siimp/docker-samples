@@ -8,7 +8,8 @@ docker rmi nginx:1.21.4-alpine
 docker rmi -f $(docker images --all --quiet)
 docker images prune
 # get all image versions from docker hub registry
-curl https://registry.hub.docker.com/v1/repositories/eclipse-temurin/tags | jq '.[] | .name' | sed "s/\"//g"
+curl https://registry.hub.docker.com/v1/repositories/nginx/tags | jq '.[] | .name' | sed 's/"//g'
+curl https://registry.hub.docker.com/v1/repositories/nginx/tags | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n'  | awk -F: '{print $3}'
 ```
 
 ## Container commands
