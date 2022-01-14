@@ -66,6 +66,11 @@ docker run --rm -it bash:5.1.12-alpine
 # apk install curl
 ```
 
+### Running alpine in interactive tty
+```bash
+docker run --rm -it -- alpine:latest /bin/sh
+```
+
 ### Running nginx in detached mode
 ```bash
 docker run --rm -d -p 8080:80 nginx:1.21.4-alpine
