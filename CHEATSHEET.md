@@ -73,7 +73,7 @@ docker run --rm -it -- alpine:latest /bin/sh
 
 ### Running nginx in detached mode
 ```
-docker run --rm -d -p 8080:80 nginx:1.21.4-alpine
+docker run --rm -d --name my-nginx -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html:ro nginx:1.23.1-alpine
 ```
 
 ### Running node with data volume and working directory
@@ -83,7 +83,7 @@ docker run --rm -d -p 8080:3000 -v $(pwd)/volumes/nodejs:/var/www -w "/var/www" 
 
 ### Running redis with password
 ```
-docker run --rm -d --name my-redis -p 6379:6379 redis:6.2.6-alpine redis-server --requirepass my-redis-password
+docker run --rm -d --name my-redis -p 6379:6379 redis:6.2.7-alpine redis-server --requirepass my-redis-password
 docker exec -it my-redis redis-cli -a my-redis-password
 ```
 
