@@ -3,8 +3,8 @@
 ## Image commands
 ```
 docker images
-docker pull nginx:1.21.4-alpine
-docker rmi nginx:1.21.4-alpine
+docker pull nginx:1.23-alpine
+docker rmi nginx:1.23-alpine
 docker rmi -f $(docker images --all --quiet)
 docker images prune
 # get all image versions from docker hub registry
@@ -73,7 +73,12 @@ docker run --rm -it -- alpine:latest /bin/sh
 
 ### Running nginx in detached mode
 ```
-docker run --rm -d --name my-nginx -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html:ro nginx:1.23.1-alpine
+docker run --rm --name my-nginx -p 8080:80 -v $(pwd)/html:/usr/share/nginx/html:ro nginx:1.23-alpine
+```
+
+### Copy files from nginx
+```
+docker cp my-nginx:/etc/nginx/nginx.conf nginx.conf
 ```
 
 ### Running node with data volume and working directory
