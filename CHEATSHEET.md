@@ -68,7 +68,7 @@ docker run --rm -it bash:5.1.12-alpine
 
 ### Running alpine in interactive tty
 ```
-docker run --rm -it -- alpine:latest /bin/sh
+docker run --rm -it -- alpine:3.18 /bin/sh
 ```
 
 ### Running nginx in detached mode
@@ -88,13 +88,13 @@ docker run --rm -d -p 8080:3000 -v $(pwd)/volumes/nodejs:/var/www -w "/var/www" 
 
 ### Running redis with password
 ```
-docker run --rm -d --name my-redis -p 6379:6379 redis:6.2.7-alpine redis-server --requirepass my-redis-password
+docker run --rm -d --name my-redis -p 6379:6379 redis:7.0-alpine redis-server --requirepass my-redis-password
 docker exec -it my-redis redis-cli -a my-redis-password
 ```
 
 ### Running RabbitMQ with management
 ```
-docker run --rm -d --hostname my-rabbit --name my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+docker run --rm -d --hostname my-rabbit --name my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management-alpine
 ```
 
 
