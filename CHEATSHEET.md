@@ -62,7 +62,7 @@ docker run --rm -it bash:5.2-alpine
 
 ### Running alpine in interactive tty
 ```
-docker run --rm -it -- alpine:latest /bin/sh
+docker run --rm -it -- alpine:3.18 /bin/sh
 ```
 
 ### Running nginx in detached mode
