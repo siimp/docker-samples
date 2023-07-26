@@ -50,17 +50,11 @@ docker-compose -f ./compose/loadbalancer/docker-compose.yml build
 docker-compose -f ./compose/loadbalancer/docker-compose.yml up --detach
 ```
 
-## Kompose tool (docker compose -> kubernetes deployment)
-https://github.com/kubernetes/kompose
-```
-kompose convert --file ./compose/loadbalancer/docker-compose.yml --out ./compose/loadbalancer/.k8s
-```
-
 ## Samples
 
 ### Running bash in interactive tty
 ```
-docker run --rm -it bash:5.1.12-alpine
+docker run --rm -it bash:5.2-alpine
 # to install packages in alpine bash (ie curl)
 # apk update
 # apk install curl
@@ -83,18 +77,23 @@ docker cp my-nginx:/etc/nginx/nginx.conf nginx.conf
 
 ### Running node with data volume and working directory
 ```
-docker run --rm -d -p 8080:3000 -v $(pwd)/volumes/nodejs:/var/www -w "/var/www" node:17.3.0-alpine node app.js
+docker run --rm -d -p 8080:3000 -v $(pwd)/volumes/nodejs:/var/www -w "/var/www" node:18-alpine node app.js
 ```
 
 ### Running redis with password
 ```
-docker run --rm -d --name my-redis -p 6379:6379 redis:6.2.7-alpine redis-server --requirepass my-redis-password
+docker run --rm -d -p 6379:6379 redis:7-alpine --requirepass my-redis-password
 docker exec -it my-redis redis-cli -a my-redis-password
 ```
 
 ### Running RabbitMQ with management
 ```
-docker run --rm -d --hostname my-rabbit --name my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+docker run --rm -d -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=my-user -e RABBITMQ_DEFAULT_PASS=my-password rabbitmq:3-management-alpine
+```
+
+### Running Postgres
+```
+docker run --rm -d -p 5432:5432 -e POSTGRES_USER=my-user -e POSTGRES_PASSWORD=my-password -e POSTGRES_DB=my-database postgres:15-alpine
 ```
 
 
