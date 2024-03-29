@@ -88,7 +88,7 @@ docker exec -it my-redis redis-cli -a my-redis-password
 
 ### Running RabbitMQ with management
 ```
-docker run --rm -d -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=my-user -e RABBITMQ_DEFAULT_PASS=my-password rabbitmq:3-management-alpine
+docker run --rm -d -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=my-user -e RABBITMQ_DEFAULT_PASS=my-password -e RABBITMQ_DEFAULT_VHOST=my-vhost rabbitmq:3.8-management-alpine
 ```
 
 ### Running Postgres
